@@ -1,0 +1,106 @@
+<!-- body {
+    background-color: #112a4d;
+}
+.top-menu {
+    background-color: #1e3a69;
+    color: white;
+    padding: 10px 0;
+    font-size: 0.85rem;
+}
+.top-nav a {
+    font-size: 16px;
+}
+.calendar a {
+    font-size: 14px;
+    margin-left: 10px;
+    color: #b8c4d1;
+}
+.calendar {
+    border-right: 1px solid #495d7a;
+    padding-right: 10px;
+}
+.fa-facebook,
+.fa-twitter,
+.fa-instagram,
+.fa-youtube,
+.fa-linkedin {
+    color: #ffffff;
+    font-size: 10px;
+    padding: 8px;
+    border-radius: 13px;
+}
+.fa-facebook:hover,
+.fa-twitter:hover,
+.fa-instagram:hover,
+.fa-youtube:hover,
+.fa-linkedin:hover {
+    color: #b8c4d1;
+    transition: 0.5s;
+    transition: trsansform .5s ease-in-out;
+    transform: scale(1.1);
+}
+.fa-facebook {
+    background: #0c55f1;
+}
+.fa-twitter {
+    background: #00acee
+}
+.fa-instagram {
+    background: #f46f30
+}
+.fa-youtube {
+    background: #ff0000
+}
+.fa-linkedin {
+    background: #0e76a8
+}
+.top-menu a {
+    color: #b8c4d1;
+    margin-right: 15px;
+    text-decoration: none;
+}
+.top-menu a:hover {
+    color: white;
+}  -->
+
+<!-- /* <div class="container-fluid top-menu" id="top-menu">
+<div class="container d-flex justify-content-between ">
+    <ul class="navbar nav">
+        <li><a href="/blog.html">Home</a></li>
+        <li><a href="#">Trending News</a></li>
+        <li><a href="#">Latest News</a></li>
+        <li><a href="#">News Grid</a></li>
+        <li><a href="#">Pro Version</a></li>
+        
+    </ul>
+    <div>
+        <span class="calendar me-3"><i class="fa fa-calendar me-2" aria-hidden="true"></i> Friday, sep 13</span>
+        <a href="#"><i class="fa-brands fa-facebook "></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+    </div>
+</div>
+</div>
+
+
+<div class="container-fluid logo-section">
+<div class="container d-flex justify-content-between align-items-center">
+    <div class="logo">
+        <span style="color: #ffce00;">BLOG</span><span style="color: #f5f4ee;">PAGE</span>
+    </div>
+    <div class="search-bar">
+        <input type="text" placeholder="Search for...">
+        <button><i class="bi bi-search"></i></button>
+    </div>
+</div>
+</div>  -->
+
+
+
+Today's work:
+Javascript - Blog admin panel :
+max-length condition is done
+left sidebar and top sidebar logout button is done
+fucher date format is done

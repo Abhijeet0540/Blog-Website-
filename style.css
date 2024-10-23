@@ -1,0 +1,279 @@
+body{
+    background-color: #1E3D9C;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+    
+}
+table.dataTable td.dt-type-numeric{
+    text-align: center;
+}
+.sidebar {
+    color: white;
+    height: auto;
+}
+.left-sidebar:focus, .left-sidebar:hover {
+    color: #fff;
+    background-color: #2949AE;
+    border-radius: 0.25rem;
+    transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease, width 0.3s ease;
+    transform: scale(1.05);
+    box-shadow: 0 3px 5px #0000000b;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+    width: 100%;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+}
+.sidebar a:hover {
+    background-color: #2949AE;
+    border-radius: 0.25rem;
+    color: #fff;
+}
+.sidebar .nav-item {
+    margin-bottom: 15px;
+}
+.save,.reset {
+    background-color: #fff;
+    color: #556275;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.save:hover,.reset:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 5px #0000000b;
+    transition-timing-function: ease-in-out;
+    transition-duration: 0.2s;
+}
+.save ,.reset  {
+    background-color: #334C94;
+    color: #fff;
+}
+#blogmain {
+    margin-top: 27px;
+}
+#addblog {
+    color: #556275;
+    font-size: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+.card-header {
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+}
+.card-body {
+    padding: 0 0 20px 0;
+}
+#main-content{
+    padding: 0 0 0 20px;
+}
+#sidebar-container{
+    padding: 0 20px 0 20px;
+    
+}
+.ck-editor__editable {
+    min-height: 200px;
+}
+#card,#blogcard {
+    border-radius: 30px;
+    background-color: #F1F5F9;
+}
+#blogcard ,#card {
+    box-shadow: 0 4px 8px #000;
+    height: 96vh;
+    overflow: auto;
+}
+.form-control {
+    background-color: #fff 
+}
+/* nav top */
+.navbar-custom {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e3e6f0;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding-left: 2.5rem;
+    border-radius: 20px;
+    border: none;
+    padding: 0.5rem;
+}
+
+.search-box i {
+    position: absolute;
+    top: 50%;
+    left: 180px;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+.nav-item .icon {
+    font-size: 20px;
+    color: #5a5c69;
+    position: relative;
+}
+
+.nav-item .icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #e74a3b;
+    color: white;
+    font-size: 10px;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+}
+#dashboard{
+    color: #4B62A2;
+}
+.fa-chevron-right{
+    font-size: 15px;
+    padding: 4px 0px 0px 0px;
+}
+
+#errorTitle,#errorDescription,#errorImage,#errorauther,#errorPostDate,#errorCategories,#errorselectStatus{
+    color: red;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+    border: 1px solid #4B62A2;
+
+}
+.ck-editor__editable_inline {
+    max-height: 250px; /* Set the maximum height */
+    overflow-y: auto;  /* Add scrollbar if content exceeds max height */
+    border: 1px solid #4B62A2; /* Optional: Border color */
+    padding: 10px; /* Optional: Padding inside the editor */
+}
+
+#sidebar{
+    margin-top: 30px;
+}
+
+/* //table css */
+table.table {
+    background-color: #f9f9f9; 
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+}
+table.table th, table.table td {
+    vertical-align: middle; 
+    padding: 12px 15px; 
+    white-space: nowrap; 
+}
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    margin: 0 5px 20px 0;
+}
+
+
+/* Buttons */
+.btn{
+    margin: 0 5px;
+    padding: 5px 10px;
+    border-radius: 30px;
+}
+@media (max-width: 768px) {
+    table.table th, table.table td {
+        font-size: 0.875rem; /* Slightly smaller font for mobile */
+    }
+
+    .btn {
+        padding: 3px 5px;
+        font-size: 0.75rem; /* Smaller button text for mobile */
+    }
+
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.25em 0.5em;
+    }
+}
+
+/* Style for the remove button */
+.remove-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: red;
+    font-size: 16px;
+    padding: 5px;
+    border-radius: 50%;
+}
+/* Make sure the icon is aligned and fits the button */
+.remove-btn i {
+    font-size: 13px;
+    position: absolute;
+    top: 3px;
+    left: 5px;
+}
+/* //edit left? */
+.fa-arrow-left{
+    color: #4B62A2;
+    font-size: 15px;
+    padding: 5px 7px 5px 7px;
+    border: 1px solid #4B62A2;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.fa-arrow-left:hover{
+    color: #fff;
+    background-color: #4B62A2;
+}
+h2{
+    font-size: 18px;
+}
+/* Container for the image preview */
+.img-container {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    width: 15%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Image styling */
+.img-preview {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Remove button (X) styling */
+.remove-btn {
+    position: absolute;
+    top: 0px;
+    right: -1px;
+    background: red;
+    color: white;
+    border: 1px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+    width: 20px;
+    height: 20px;
+}

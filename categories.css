@@ -1,0 +1,10 @@
+
+th{
+    text-align: center;
+}
+td{
+    background-color: azure;
+}
+th.dt-orderable-asc.dt-orderable-desc {
+    text-align: center;
+}

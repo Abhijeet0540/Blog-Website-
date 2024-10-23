@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Report</title>
+    <link rel="icon" href="./img/Logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.0/classic/ckeditor.js"></script>
+    <link rel="stylesheet" href="dasborstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+    <div class="d-flex flex-row justify-content-between p-3">
+        <div class="col-md-lg-2" id="sidebar" width="10%">
+            <!-- Sidebar will be loaded here via jQuery -->
+        </div>
+        <div class="col-10 p-3 card bg-light">
+            <div>
+                <div class="navbar navbar-custom d-flex align-items-center justify-content-between">
+                    <div>
+                        <ol class="breadcrumb mb-0 d-flex align-items-center">
+                            <li><a href="#" class="text-decoration-none" id="dashboard">Application</a></li>
+                            <i class="fas fa-chevron-right mx-2 text-muted"></i>
+                            <li aria-current="page">Dashboard</li>
+                        </ol>
+                    </div>
+                    <ul class="nav d-flex align-items-center">
+                        <li class="nav-item me-3">
+                            <div class="search-box">
+                                <i class="fas fa-search"></i>
+                                <input type="text" class="form-control" placeholder="Search">
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link icon">
+                                <i class="fas fa-bell"></i>
+                                <span class="badge rounded-pill">1</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown ms-3">
+                            <a href="#" class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://images.pexels.com/photos/11213182/pexels-photo-11213182.jpeg" alt="Profile" class="profile-img">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                                <li><a class="dropdown-item" href="/profile.html"> <i class="fas fa-user-circle me-2"></i> Profile</a></li>
+                                <li><a class="dropdown-item" href="/Login.html" id="logoutBtn"> <i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="container mt-5">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <a href="#" class="text-decoration-none report-title mb-2">General Report</a>
+                    <a href="#" class="reload-data mb-2">↻ Reload Data</a>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="card p-3 position-relative">
+                            <div class="d-flex align-items-center">
+                                <i class="card-icon bi bi-cart text-primary"></i>
+                                <div>
+                                    <h3 class="card-title">4.710</h3>
+                                    <p class="card-subtitle">Item Sales</p>
+                                </div>
+                            </div>
+                            <span class="badge badge-green">33% ↑</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card p-3 position-relative">
+                            <div class="d-flex align-items-center">
+                                <i class="card-icon bi bi-receipt text-warning"></i>
+                                <div>
+                                    <h3 class="card-title">3.721</h3>
+                                    <p class="card-subtitle">New Orders</p>
+                                </div>
+                            </div>
+                            <span class="badge badge-red">2% ↓</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card p-3 position-relative">
+                            <div class="d-flex align-items-center">
+                                <i class="card-icon bi bi-pc-display text-success"></i>
+                                <div>
+                                    <h3 class="card-title">2.149</h3>
+                                    <p class="card-subtitle">Total Products</p>
+                                </div>
+                            </div>
+                            <span class="badge badge-green">12% ↑</span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card p-3 position-relative">
+                            <div class="d-flex align-items-center">
+                                <i class="card-icon bi bi-person text-info"></i>
+                                <div>
+                                    <h3 class="card-title">152.040</h3>
+                                    <p class="card-subtitle">Unique Visitor</p>
+                                </div>
+                            </div>
+                            <span class="badge badge-green">22% ↑</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="container mt-5">
+                    <div class="report-header">
+                        <a href="#" class="text-decoration-none">Sales Report</a>
+                        <a href="#" class="text-decoration-none">Show More <i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="row d-flex align-items-center ">
+                        <div class="col-md-6">
+                            <div class="report-container ">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div>
+                                        <div class="revenue-box">$15,000</div>
+                                        <span class="revenue-subtitle">This Month</span>
+                                    </div>
+                                    <div>
+                                        <div class="revenue-box">$10,000</div>
+                                        <span class="revenue-subtitle">Last Month</span>
+                                    </div>
+                                    <div>
+                                        <select class="form-select filter-dropdown" aria-label="Filter by Category">
+                                            <option selected>Filter by Category</option>
+                                            <option value="1">Category 1</option>
+                                            <option value="2">Category 2</option>
+                                            <option value="3">Category 3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="chart-container">
+                                    <div class="chart">
+                                        <div id="line-chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="report-container">
+                                <div class="chart-container mb-4">
+                                    <div class="chart">
+                                        <div class="pie-chart" id="pie-chart"></div>
+                                        <div class="legend">
+                                            <div><span class="color-box color-blue"></span> 17 - 30 Years old
+                                                <strong>62%</strong>
+                                            </div>
+                                            <div><span class="color-box color-orange"></span> 31 - 50 Years old
+                                                <strong>33%</strong>
+                                            </div>
+                                            <div><span class="color-box color-yellow"></span> >= 50 Years old
+                                                <strong>10%</strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-5">
+                <div class="row">
+                    <!-- Left Section: Map -->
+                    <div class="col-lg-8">
+                        <div class="card p-3">
+                            <h5>Official Store</h5>
+                            <input type="text" class="form-control my-3" placeholder="Filter by city" />
+                            <p>250 Official stores in 21 countries, click the marker to see location details.</p>
+                            <div class="map-container">
+                                <iframe class="map w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83998.96777909405!2d2.2646345243824366!3d48.858825492091384!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sEiffel%20Tower!5e0!3m2!1sen!2sin!4v1725953212985!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Section: Best Sellers -->
+                    <div class="col-lg-4">
+                        <div class="card p-3">
+                            <h5>Weekly Best Sellers</h5>
+                            <div class="best-seller">
+                                <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tom Hanks">
+                                <div class="best-seller-info">
+                                    <strong>Tom Hanks</strong>
+                                    <p>10 July 2020</p>
+                                </div>
+                                <span class="sales-badge">137 Sales</span>
+                            </div>
+                            <div class="best-seller">
+                                <img src="https://images.unsplash.com/flagged/photo-1595514191830-3e96a518989b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="Denzel Washington">
+                                <div class="best-seller-info">
+                                    <strong>Denzel Washington</strong>
+                                    <p>30 September 2020</p>
+                                </div>
+                                <span class="sales-badge">137 Sales</span>
+                            </div>
+                            <div class="best-seller">
+                                <img src="https://images.unsplash.com/photo-1590086782792-42dd2350140d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mzl8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="Matt Damon">
+                                <div class="best-seller-info">
+                                    <strong>Matt Damon</strong>
+                                    <p>08 October 2022</p>
+                                </div>
+                                <span class="sales-badge">137 Sales</span>
+                            </div>
+                            <div class="best-seller">
+                                <img src="https://plus.unsplash.com/premium_photo-1671656349322-41de944d259b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bWFufGVufDB8fDB8fHww" alt="Matt Damon">
+                                <div class="best-seller-info">
+                                    <strong>Matt Damon</strong>
+                                    <p>08 October 2022</p>
+                                </div>
+                                <span class="sales-badge">137 Sales</span>
+                            </div>
+                            <div class="best-seller">
+                                <img src="https://plus.unsplash.com/premium_photo-1670514307218-c2d2159d8d4c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Njl8fG1hbnxlbnwwfHwwfHx8MA%3D%3D" alt="Johnny Depp">
+                                <div class="best-seller-info">
+                                    <strong>Johnny Depp</strong>
+                                    <p>22 April 2022</p>
+                                </div>
+                                <span class="sales-badge">137 Sales</span>
+                            </div>
+                        </div>
+                        <div class="view-more mt-3 text-center">
+                            <button class="btn btn-outline-primary border-secondary-subtle w-100 p-3">View More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="dasbors.js"></script>
+</body>
+
+</html>

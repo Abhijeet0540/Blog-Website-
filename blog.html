@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Design</title>
+    <link rel="icon" href="./img/Logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link rel="stylesheet" href="blog.css  ">
+</head>
+<body>
+    <div>
+        <header>
+            <div class="logo"><strong>B.LOG</strong></div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Blog content</a>
+                <a href="#">Latest Updates</a>
+                <a href="#">Contact</a>
+            </nav>
+            <div class="cta-buttons">
+                <button class="login">Log in</button>
+                <button class="signup">Sign up</button>
+                <input type="text" placeholder="Search...." class="search-bar bg-transparent">
+                <i class="fas fa-search top-search-icon  "></i>
+            </div>
+        </header>
+        <main>
+            <h1 class="main-title">BLOG-ARTICLE</h1>
+            <p class="sub-info">Site of the Day | Oct 3, 2024 | Score 7.43 of 10</p>
+        </main>
+        <!-- Shapes for decoration -->
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <div class="container-fluid d-flex align-items-center justify-content-between">
+        <div class="text-section">
+            <h1><strong>Creative Collaction of Blog</strong></h1>
+            <h4>Explore thousands of tutorials, tips and tricks from leading industry experts. <span class=" ">Totally
+                    free. </span></h4>
+            <div class="arrow">
+                <svg width="100" height="13" viewBox="0 0 111 13" fill="none">
+                    <path
+                        d="M1 3.82339C52.1863 0.580862 39.868 0.606528 106.335 1.55985C107.498 1.57697 110.915 2.3054 109.768 2.60729C102.379 4.54817 94.8488 4.66428 87.4522 6.5196C82.3485 7.80048 77.3614 10.174 72.3166 12"
+                        stroke="#707070" stroke-width="2" />
+                </svg>
+            </div>
+            <div class="search-bar p-0">
+                <input type="text" placeholder="What do you want to learn today?" />
+                <div class="search p-0">
+                    <i class="fas fa-search blog-search"></i>
+                </div>
+            </div>
+        </div>
+        <div class="image-section">
+            <img src="https://static.tutsplus.com/packs/static/images/home_hero_new-f73b1e74cb5af1737f62.png"
+                alt="Creative collaboration" />
+        </div>
+    </div>
+
+    <div class="container-fluid illustration">
+        <div class="character-left">
+            <img src="/img/woman-has-successful-contract_442409-3242__1_-removebg-preview.png"
+                alt="Character 1">
+
+        </div>
+
+        <div class="center-text">
+            <h1>Fueling Minds = <span class="highlight">One Post at a Time</span></h1>
+            <a href="#" class="cta-button">&quot;Unlock the Power of Storytelling&quot;</a>
+        </div>
+
+        <div class="character-right">
+            <img src="/img/woman-looking-profit-chart-her-laptop_442409-3250-removebg-preview (1).png"
+                alt="Character 2">
+        </div>
+    </div>
+
+    <div class="container-fluid " id="Dropdowncategory">
+        <div class="btn-group me-5">
+            <div class="dropdown-container mb-3" style="position: relative;">
+                <!-- <select id="categories" class="form-select" onchange="selectCategory()" required style="padding-right: 2.5rem;"> -->
+                    <select id="categories" onchange="selectCategory()" class="form-select">
+                        <!-- Categories will be populated here dynamically -->
+                    <option value="">Select Category</option>
+                    <option value="showall">Show All</option>
+                    
+                </select>
+                <i class="fa fa-chevron-down"></i>
+            </div>
+            <div id="selected-category"></div>
+        </div>
+        <!-- <div class="dropdown-container mb-3">
+            <label for="categories" class="form-label">Categories <span class="text-danger">*</span></label>
+            <select id="categories" class="form-select">
+                <option value="">Select Categories</option>
+                
+            </select>
+            <span class="text-danger error" id="errorCategories"></span>
+        </div> -->
+    </div>
+    <div class="container">
+        <div id="posts" class="row">
+            <!-- Posts will be injected here dynamically -->
+        </div>
+        <div class="text-center mt-3">
+            <button id="showMore" class="btn btn-primary mb-3" style="display: none;" onclick="toggleShowMore()">Show
+                More</button>
+        </div>
+    </div>
+    <div class="container-fluid" id="main-card">
+        <div class="row py-5 mx-3">
+            <div class="col-md-9 firstCard" id="firstCard">
+                <div class="card-container">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="card-author">
+                                <img src="https://img.freepik.com/free-photo/funny-cartoon-man-with-mustache-brown-jacket-grey-background_1142-51703.jpg?uid=R133268976&ga=GA1.1.634881023.1727092348&semt=ais_hybrid"
+                                    alt="Author Profile" class="profile-picture">
+                                <div class="card-author-details d-flex ">
+                                    <h3 class="card-author-title">By <span class="author-name">Gretha</span></h3>
+                                    <p class="card-author-role ms-2">UI designer at Amazon</p>
+                                    <p class="card-article-date ms-2">Apr 16, 2022</p>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h1 class="card-title">Zero UI: The End of Screen-based Interfaces and What It Means for
+                                    Businesses</h1>
+                                <p class="card-description">
+                                    Zero UI is a style that’s been looming in the shadow for some time but is really
+                                    starting to emerge now. The idea is easy to understand — the less the user has to
+                                    think about the interface, the better and more natural it feels.
+                                </p>
+                                <div class="card-tags">
+                                    <span class="card-tag">UX design</span>
+                                    <span class="card-tag">4 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Article Image in col-md-3 -->
+                        <div class="col-md-3">
+                            <div class="card-image-container">
+                                <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGxhcHRvcHxlbnwwfHwwfHx8MA%3D%3D"
+                                    alt="Building Image" class="card-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="card-container ">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="card-author">
+                                <img src="https://img.freepik.com/premium-photo/3d-avatar-cartoon-character_113255-92971.jpg?ga=GA1.1.634881023.1727092348&semt=ais_hybrid"
+                                    class="profile-picture">
+                                <div class="card-author-details d-flex ">
+                                    <h3 class="card-author-title">By <span class="author-name">john</span></h3>
+                                    <p class="card-author-role ms-2">web designer at Google</p>
+                                    <p class="card-article-date ms-2">Apr 16, 2024</p>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <h1 class="card-title">john: The End of Screen-based Interfaces and What It Means for
+                                    Businesses</h1>
+                                <p class="card-description">Google has long been a major player in the design community.
+                                    The idea is easy to understand — the less the user has to think about the interface,
+                                    the better and more natural it feels.</p>
+                                <div class="card-tags">
+                                    <span class="card-tag">web design</span>
+                                    <span class="card-tag">4 min read</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Article Image in col-md-3 -->
+                        <div class="col-md-3">
+                            <div class="card-image-container">
+                                <img src="https://images.unsplash.com/photo-1511296265581-c2450046447d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8d2ViJTIwZGVzaWduZXIlMjBhdCUyMEdvb2dsZXxlbnwwfHwwfHx8MA%3D%3D"
+                                    alt="Building Image" class="card-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 sidebar ">
+                <div class="people-interest">
+                    <h5 class="text-lg font-semibold mb-3 p-3">People you might be interested in</h5>
+                    <div class="person d-flex ">
+                        <img src="https://static01.nyt.com/images/2011/10/23/magazine/23murakami1_span/23murakami1_span-articleLarge.jpg?quality=75&auto=webp&disable=upscale"
+                            alt="Chintan Bhatt" class="profile-pic ">
+                        <div class="person-details ms-2 ">
+                            <p class="person-name mb-2 "><strong>Haruki Murakami</strong></p>
+                            <p class="person-role ">Japanese author & master storyteller who carved out a niche over the
+                                years</p>
+                        </div>
+                        <button class="follow-btn ms-3 mt-4">Follow</button>
+                    </div>
+
+                    <div class="person d-flex ">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQa1WlwQ0f0FckAFkDBQ1xotKqisSZFEgEIdA&s"
+                            alt="Chintan Bhatt" class="profile-pic ">
+                        <div class="person-details ms-2 ">
+                            <p class="person-name mb-2"><strong>Kate Hamill</strong></p>
+                            <p class="person-role ">Kate Hamill is an American actress and playwright. Hamill is known
+                                for writing and acting in innovative</p>
+                        </div>
+                        <button class="follow-btn ms-3 mt-4">Follow</button>
+                    </div>
+
+                    <div class="person d-flex ">
+                        <img src="data:image/jpeg;base64,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"
+                            alt="Chintan Bhatt" class="profile-pic ">
+                        <div class="person-details ms-2 ">
+                            <p class="person-name mb-2"><strong>Martin Scorsese</strong></p>
+                            <p class="person-role ">Martin Charles Scorsese is an American filmmaker. He emerged as one
+                                of the major figures of the New Hollywood era.</p>
+                        </div>
+                        <button class="follow-btn ms-3 mt-4">Follow</button>
+                    </div>
+                </div>
+
+                <div class="reading-list">
+                    <h5>My reading list</h5>
+                    <div class="reading-item">
+                        <div class="overflow-hidden reading-item article-img rounded">
+                            <img src="https://images.unsplash.com/photo-1717766732764-00f97cea4018?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTkyfHxyZWFkaW5nJTIwYm9vayUyMGJsYWNrfGVufDB8fDB8fHww"
+                                alt="Article" class="article-img W-100">
+                        </div>
+                        <p class="article-title"> A Beginner's Guide to White Balance in Photography</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="" id="footer" >
+        <!-- Footer Section -->>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="blog.js"></script>
+</body>
+</html>
