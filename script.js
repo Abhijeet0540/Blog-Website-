@@ -9,12 +9,20 @@ $(document).ready(function () {
         ordering: true,
         autoWidth: false
     });
+
+    // Auto-fill author field with current user's name if available
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    if (currentUser && document.getElementById('auther')) {
+        document.getElementById('auther').value = currentUser.fullName;
+        // Make the author field read-only to ensure posts are associated with the logged-in user
+        document.getElementById('auther').setAttribute('readonly', 'readonly');
+    }
 });
 // Initialize flatpickr
 document.addEventListener('DOMContentLoaded', function () {
     flatpickr("#postDate", {
-        dateFormat: "Y-m-d", 
-        allowInput: true, 
+        dateFormat: "Y-m-d",
+        allowInput: true,
         maxDate: "today"
     });
 });
@@ -103,17 +111,17 @@ ClassicEditor
         toolbar: ['heading', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote', 'undo', 'redo', 'imageUpload', 'mediaEmbed'],
         image: { toolbar: ['imageTextAlternative', 'imageStyle:full', 'imageStyle:side'] },
         placeholder: 'Write your amazing content here...',
-        height: '400px',  
-        language: 'en'    
+        height: '400px',
+        language: 'en'
     })
     .then(editor => { editorInstance = editor; })
     .catch(error => console.error(error));
 $(document).ready(function () {
-    loadCategories(); 
+    loadCategories();
 });
 // Load categories from local storage
 document.addEventListener('DOMContentLoaded', function () {
-    loadCategoriesForDropdown(); 
+    loadCategoriesForDropdown();
 });
 
 // Load categories from local storage
@@ -151,12 +159,17 @@ function save() {
         let comments = post.comments || [];
 
         function savePost() {
+            // Get current user from localStorage
+            const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+
             const postData = {
                 postTitle: postTitle.value,
                 description: editorContent,
                 imageNames: imageNames.length > 0 ? imageNames : post.imageNames,
                 imageBase64Array: imageBase64Array.length > 0 ? imageBase64Array : post.imageBase64Array,
                 auther: auther.value,
+                userId: currentUser.id || 'anonymous', // Associate post with user ID
+                userEmail: currentUser.email || '', // Store user email for reference
                 postDate: postDate.value,
                 categories: categories.value,
                 selectStatus: selectStatus.value,
@@ -377,7 +390,7 @@ function clearFormOnReload() {
 // Clear form on reload
 window.addEventListener('beforeunload', clearFormOnReload);
 
-// Error handling 
+// Error handling
 function showError(field, errorElement, message) {
     errorElement.textContent = message;
     field.style.border = "1px solid red";
@@ -393,26 +406,72 @@ function clearError(field, errorElement) {
 function displayPosts() {
     const posts = JSON.parse(localStorage.getItem('posts')) || [];
     const tableBody = document.getElementById('postTableBody');
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
     tableBody.innerHTML = '';
 
-    posts.forEach((post, index) => {
+    // Filter posts based on user role
+    let filteredPosts = posts;
+    if (currentUser.role !== 'admin') {
+        // Regular users can only see their own posts
+        filteredPosts = posts.filter(post => post.userId === currentUser.id);
+    }
+
+    // Add filter controls if admin
+    if (currentUser.role === 'admin' && document.getElementById('filterControls')) {
+        const filterControls = document.getElementById('filterControls');
+        if (!document.getElementById('userFilter')) {
+            filterControls.innerHTML = `
+                <div class="mb-3">
+                    <label for="userFilter" class="form-label">Filter by User:</label>
+                    <select id="userFilter" class="form-select">
+                        <option value="all">All Users</option>
+                        ${getUserOptions()}
+                    </select>
+                </div>
+            `;
+
+            // Add event listener to the filter
+            document.getElementById('userFilter').addEventListener('change', function () {
+                displayPosts();
+            });
+        }
+    }
+
+    // Apply user filter if admin and filter is selected
+    if (currentUser.role === 'admin' && document.getElementById('userFilter') && document.getElementById('userFilter').value !== 'all') {
+        const selectedUserId = document.getElementById('userFilter').value;
+        filteredPosts = posts.filter(post => post.userId === selectedUserId);
+    }
+
+    filteredPosts.forEach((post, index) => {
         const truncatedDescription = post.description.length > 30 ? post.description.slice(0, 30) + '...' : post.description;
         const truncatedTitle = post.postTitle.length > 15 ? post.postTitle.slice(0, 15) + '...' : post.postTitle;
         const firstImageBase64 = post.imageBase64Array && post.imageBase64Array.length > 0 ? post.imageBase64Array[0] : '';
         const imagePreviewHtml = firstImageBase64 ? `<img src="${firstImageBase64}" alt="${post.imageName}" style="width: 30px; height: 30px; border-radius: 50%; object-fit: cover; margin-right: 5px;">` : '';
 
+        // Get the actual index in the original posts array for edit/delete operations
+        const originalIndex = posts.findIndex(p =>
+            p.postTitle === post.postTitle &&
+            p.description === post.description &&
+            p.userId === post.userId);
+
         const row = document.createElement('tr');
 
         row.addEventListener('click', function (event) {
             if (!event.target.closest('button')) {
-                viewPost(index);  // Pass the correct index to viewPost function
+                viewPost(originalIndex);  // Pass the correct index to viewPost function
             }
         });
+
+        // Only show edit/delete buttons for admin or post owner
+        const canEditDelete = currentUser.role === 'admin' || post.userId === currentUser.id;
+
         row.innerHTML = `
             <td>${index + 1}</td>
             <td>${imagePreviewHtml}${truncatedTitle}</td>
             <td>${truncatedDescription}</td>
             <td>${post.auther}</td>
+            <td>${post.userEmail || 'N/A'}</td>
             <td>${post.postDate}</td>
             <td>${post.categories}</td>
             <td>
@@ -421,37 +480,80 @@ function displayPosts() {
                 </span>
             </td>
             <td>
-                <button onclick="deletePost(${index})" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete Post"><i class="fas fa-trash-alt"></i></button>
-                <button onclick="editPost(${index})" class="btn btn-warning btn-sm" data-toggle="tooltip" title="Edit Post"><i class="fas fa-edit"></i></button>
-                <button onclick="viewPost(${index})" class="btn btn-primary btn-sm" data-toggle="tooltip" title="View Post"><i class="fas fa-eye"></i></button>
+                ${canEditDelete ? `
+                <button onclick="deletePost(${originalIndex})" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete Post"><i class="fas fa-trash-alt"></i></button>
+                <button onclick="editPost(${originalIndex})" class="btn btn-warning btn-sm" data-toggle="tooltip" title="Edit Post"><i class="fas fa-edit"></i></button>
+                ` : ''}
+                <button onclick="viewPost(${originalIndex})" class="btn btn-primary btn-sm" data-toggle="tooltip" title="View Post"><i class="fas fa-eye"></i></button>
             </td>`;
         tableBody.appendChild(row);
     });
 }
+// Function to get user options for the filter dropdown
+function getUserOptions() {
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+    // Get unique user IDs from posts
+    const userIds = [...new Set(posts.map(post => post.userId))];
+
+    // Create options HTML
+    return userIds.map(userId => {
+        const user = users.find(u => u.id === userId) || {};
+        const userName = user.fullName || 'Unknown User';
+        return `<option value="${userId}">${userName} (${user.email || 'No email'})</option>`;
+    }).join('');
+}
+
 // Delete post with confirmation
 function deletePost(index) {
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            const posts = JSON.parse(localStorage.getItem('posts')) || [];
-            posts.splice(index, 1);
-            localStorage.setItem('posts', JSON.stringify(posts));
-            displayPosts();
-            Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
-        }
-    });
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    const post = posts[index];
+
+    // Check if user has permission to delete this post
+    if (post && (currentUser.role === 'admin' || post.userId === currentUser.id)) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                posts.splice(index, 1);
+                localStorage.setItem('posts', JSON.stringify(posts));
+                displayPosts();
+                Swal.fire('Deleted!', 'Your post has been deleted.', 'success');
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Permission Denied',
+            text: 'You do not have permission to delete this post.'
+        });
+    }
 }
 // Edit post
 function editPost(index) {
-    localStorage.setItem('editIndex', index);
-    window.location.href = 'index.html';
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    const post = posts[index];
+
+    // Check if user has permission to edit this post
+    if (post && (currentUser.role === 'admin' || post.userId === currentUser.id)) {
+        localStorage.setItem('editIndex', index);
+        window.location.href = 'index.html';
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Permission Denied',
+            text: 'You do not have permission to edit this post.'
+        });
+    }
 }
 // View post details
 function viewPost(index) {
@@ -500,3 +602,16 @@ document.getElementById('selectStatus').oninput = () => clearError(selectStatus,
 if (window.location.pathname.includes('admin_table.html')) {
     displayPosts();
 }
+
+// Logout functionality
+document.addEventListener('DOMContentLoaded', function () {
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+            // Clear the current user from localStorage
+            localStorage.removeItem('currentUser');
+            // Redirect to login page
+            window.location.href = 'Login.html';
+        });
+    }
+});

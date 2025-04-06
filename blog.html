@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,20 +11,21 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link rel="stylesheet" href="blog.css  ">
 </head>
+
 <body>
     <div>
         <header>
             <div class="logo"><strong>B.LOG</strong></div>
             <nav>
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Blog content</a>
-                <a href="#">Latest Updates</a>
-                <a href="#">Contact</a>
+                <a href="blog.html">Home</a>
+                <a href="#about">About</a>
+                <a href="#posts">Blog Posts</a>
+                <a href="#main-card">Featured</a>
+                <a href="#footer">Contact</a>
             </nav>
             <div class="cta-buttons">
-                <button class="login">Log in</button>
-                <button class="signup">Sign up</button>
+                <a href="Login.html"><button class="login">Log in</button></a>
+                <a href="register.html"><button class="signup">Sign up</button></a>
                 <input type="text" placeholder="Search...." class="search-bar bg-transparent">
                 <i class="fas fa-search top-search-icon  "></i>
             </div>
@@ -65,8 +67,7 @@
 
     <div class="container-fluid illustration">
         <div class="character-left">
-            <img src="/img/woman-has-successful-contract_442409-3242__1_-removebg-preview.png"
-                alt="Character 1">
+            <img src="/img/woman-has-successful-contract_442409-3242__1_-removebg-preview.png" alt="Character 1">
 
         </div>
 
@@ -85,11 +86,8 @@
         <div class="btn-group me-5">
             <div class="dropdown-container mb-3" style="position: relative;">
                 <!-- <select id="categories" class="form-select" onchange="selectCategory()" required style="padding-right: 2.5rem;"> -->
-                    <select id="categories" onchange="selectCategory()" class="form-select">
-                        <!-- Categories will be populated here dynamically -->
-                    <option value="">Select Category</option>
-                    <option value="showall">Show All</option>
-                    
+                <select id="categories" onchange="selectCategory()" class="form-select">
+                    <!-- Categories will be populated here dynamically -->
                 </select>
                 <i class="fa fa-chevron-down"></i>
             </div>
@@ -99,13 +97,13 @@
             <label for="categories" class="form-label">Categories <span class="text-danger">*</span></label>
             <select id="categories" class="form-select">
                 <option value="">Select Categories</option>
-                
+
             </select>
             <span class="text-danger error" id="errorCategories"></span>
         </div> -->
     </div>
     <div class="container">
-        <div id="posts" class="row">
+        <div id="posts" class="row gap-3">
             <!-- Posts will be injected here dynamically -->
         </div>
         <div class="text-center mt-3">
@@ -236,10 +234,11 @@
             </div>
         </div>
     </div>
-    <div class="" id="footer" >
+    <div class="" id="footer">
         <!-- Footer Section -->>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="blog.js"></script>
 </body>
+
 </html>

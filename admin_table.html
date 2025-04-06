@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="d-flex flex-row justify-content-between p-3">
         <div class="col-md-lg-2" id="sidebar" width="10%">
@@ -42,20 +44,28 @@
                                 </a>
                             </li>
                             <li class="nav-item dropdown ms-3">
-                                <a href="#" class="nav-link dropdown-toggle" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <img src="https://images.pexels.com/photos/11213182/pexels-photo-11213182.jpeg" alt="Profile" class="profile-img">
+                                <a href="#" class="nav-link dropdown-toggle" id="profileDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="https://images.pexels.com/photos/11213182/pexels-photo-11213182.jpeg"
+                                        alt="Profile" class="profile-img">
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-                                    <li><a class="dropdown-item" href="/profile.html"> <i class="fas fa-user-circle me-2"></i> Profile</a></li>
-                                    <li><a class="dropdown-item" href="/Login.html" id="logoutBtn"> <i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                                    <li><a class="dropdown-item" href="/profile.html"> <i
+                                                class="fas fa-user-circle me-2"></i> Profile</a></li>
+                                    <li><a class="dropdown-item" href="/Login.html" id="logoutBtn"> <i
+                                                class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
-                    <div
-                        class="text-lg font-semibold mb-3 p-3 text-decoration-none d-flex align-items-center justify-content-end">
-                        <button class=" btn btn-primary me-3" id="addblog"><a class="text-decoration-none text-white "
-                                href="/index.html"><i class="fas fa-plus me-2 rounded "></i>Add Post</a></button>
+                    <div class="row mb-3 p-3">
+                        <div class="col-md-6" id="filterControls">
+                            <!-- Filter controls will be added dynamically by JavaScript -->
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <button class="btn btn-primary me-3" id="addblog"><a class="text-decoration-none text-white"
+                                    href="/index.html"><i class="fas fa-plus me-2 rounded"></i>Add Post</a></button>
+                        </div>
                     </div>
                     <div class="table-responsive mt-3 text-center">
                         <table id="postTable" class="table table-bordered table-striped table table-striped">
@@ -64,7 +74,8 @@
                                     <th class="text-center">Sr.No</th>
                                     <th class="text-center">Title</th>
                                     <th class="text-center">Description</th>
-                                    <th class="text-center">Auther</th>
+                                    <th class="text-center">Author</th>
+                                    <th class="text-center">Email</th>
                                     <th class="text-center">Date</th>
                                     <th class="text-center">Categories</th>
                                     <th class="text-center">Status</th>
@@ -87,4 +98,5 @@
     <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>
     <script src="/script.js"></script>
 </body>
+
 </html>

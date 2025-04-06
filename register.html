@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - B.LOG</title>
+    <link rel="icon" href="./img/Logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+    <style>
+        /* Additional styles for registration page */
+        .register-form {
+            max-width: 450px;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #1877f2;
+        }
+
+        .terms {
+            font-size: 0.8rem;
+            text-align: center;
+            margin: 15px 0;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container flex">
+        <div class="Blog-page flex">
+            <div class="text">
+                <h1>B.LOG</h1>
+                <p class="lead">BLOG is a platform where you can share</p>
+                <p class="lead">your thoughts with the world.</p>
+            </div>
+            <form id="registerForm" class="register-form">
+                <div class="form-title">Create a new account</div>
+                <input type="text" id="fullName" placeholder="Full Name" required>
+                <p id="fullName-error" style="color: red;"></p>
+
+                <input type="email" id="email" placeholder="Email address" required>
+                <p id="email-error" style="color: red;"></p>
+
+                <input type="password" id="password" placeholder="Password" required>
+                <p id="password-error" style="color: red;"></p>
+
+                <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                <p id="confirmPassword-error" style="color: red;"></p>
+                <div class="link">
+                    <button type="submit" class="login" id="register">Register</button>
+                    <a href="blog.html" class="view-blog">View Blog</a>
+                </div>
+                <hr>
+                <div class="button text-center">
+                    <a href="Login.html">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="register.js"></script>
+</body>
+
+</html>

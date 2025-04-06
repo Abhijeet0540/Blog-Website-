@@ -5,9 +5,15 @@ $(function () {
 
 // Function to load categories from local storage and display them in the dropdown
 function loadCategories() {
-    const storedCategories = JSON.parse(localStorage.getItem('categories')) || []; // Fetch categories from localStorage
-    const dropdown = document.getElementById('categories'); // Dropdown element
-    dropdown.innerHTML = '<option value="showall">Select Category</option>'; // Default option
+    const storedCategories = JSON.parse(localStorage.getItem('categories')) || [];
+    const dropdown = document.getElementById('categories');
+    
+    if (!dropdown) {
+        console.error('Categories dropdown not found');
+        return;
+    }
+    
+    dropdown.innerHTML = '<option value="showall">All Categories</option>';
 
     // Filter active categories and add them to the dropdown
     storedCategories.forEach(category => {
@@ -43,21 +49,50 @@ function getActivePosts(posts) {
 let limit = 4;
 function displayPosts(limit = 4) {
     const postContainer = document.getElementById('posts');
+    if (!postContainer) {
+        console.error('Post container not found');
+        return;
+    }
+    
     const storedPosts = JSON.parse(localStorage.getItem('posts')) || [];
     const selectedCategory = localStorage.getItem('selectedCategory') || 'showall';
+    
+    // Clear the container
     postContainer.innerHTML = '';
-
+    
+    // Log for debugging
+    console.log('Total posts in localStorage:', storedPosts.length);
+    console.log('Selected category:', selectedCategory);
+    
+    // Get active posts
     let activePosts = getActivePosts(storedPosts);
-
+    console.log('Active posts:', activePosts.length);
+    
+    // Filter by category if needed
     if (selectedCategory !== 'showall') {
         activePosts = activePosts.filter(post => post.categories === selectedCategory);
+        console.log('Posts after category filtering:', activePosts.length);
     }
 
     // Reverse the array so the newest posts appear first
     activePosts = activePosts.reverse();
+    
+    // Show message if no posts
     if (activePosts.length === 0) {
-        postContainer.innerHTML = '<p class="text-center mt-5 text-danger opacity-100 font-weight-bold "><-------THIS CATEGORY DOES NOT HAVE ANY POSTS-------></p>';
-        document.getElementById('showMore').style.display = 'none';
+        postContainer.innerHTML = `
+            <div class="col-12 text-center mt-5 ">
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">No Posts Found</h4>
+                    <p>There are no posts in this category yet.</p>
+                    <hr>
+                    <button class="btn btn-primary" onclick="showAllPosts()">View All Posts</button>
+                </div>
+            </div>`;
+        
+        const showMoreButton = document.getElementById('showMore');
+        if (showMoreButton) {
+            showMoreButton.style.display = 'none';
+        }
         return;
     }
 
@@ -68,73 +103,79 @@ function displayPosts(limit = 4) {
     postsToDisplay.forEach((post, index) => {
         const postElement = document.createElement('div');
         postElement.classList.add('col-md-3', 'mb-4', 'p-3');
-        postElement.setAttribute('id', `post-${index + 1}`);
-
-        const postImage = post.imageBase64Array && post.imageBase64Array.length > 0 ? post.imageBase64Array[0] : 'placeholder.jpg';
-
+        
+        // Handle image
+        let postImage = 'https://placehold.co/600x400?text=No+Image';
+        if (post.imageBase64Array && post.imageBase64Array.length > 0) {
+            postImage = post.imageBase64Array[0];
+        }
+        
+        // Handle title
+        const displayTitle = post.postTitle || 'Untitled Post';
+        
+        // Handle category
+        const category = post.categories || 'Uncategorized';
+        
+        // Handle date
+        const displayDate = post.postDate ? formatDate(post.postDate) : formatDate(new Date().toISOString());
+        
+        // Create post HTML
         postElement.innerHTML = `
-            <a class="text-decoration-none">
+            <a class="text-decoration-none " style="cursor: pointer !important;">
                 <div class="image-container">
-                    <img src="${postImage}" alt="Post Image" class="post-image" style="width: 100%; height: 200px; object-fit: cover;">
-                    <span class="category-label">${post.categories}</span>
+                    <img src="${postImage}" alt="${displayTitle}" class="post-image" style="width: 100%; height: 200px; object-fit: cover;">
+                    <span class="category-label">${category}</span>
                 </div>
                 <div class="post-content">
-                    <h3 class="post-title mb-3 text-dark">${post.postTitle.slice(0, 60) + '.....'}</h3>
-                    <p class="post-date text-muted"><i class="fas fa-calendar-alt pe-2"></i>${formatDate(post.postDate)}</p>
+                    <h3 class="post-title mb-3 text-dark">${displayTitle}</h3>
+                    <p class="post-date text-muted"><i class="fas fa-calendar-alt me-2"></i>${displayDate}</p>
                 </div>
             </a>
         `;
-
+        
+        // Add click event
         postElement.addEventListener('click', () => {
             localStorage.setItem('selectedPostIndex', storedPosts.indexOf(post));
             window.location.href = 'show.html';
         });
-
+        
+        // Add to container
         postContainer.appendChild(postElement);
     });
 
+    // Handle show more button
     const showMoreButton = document.getElementById('showMore');
-    if (activePosts.length > limit) {
-        showMoreButton.style.display = 'block';
-        showMoreButton.textContent = limit >= activePosts.length ? 'Show Less' : 'Show More';
-    } else {
-        showMoreButton.style.display = 'none';
+    if (showMoreButton) {
+        if (activePosts.length > limit) {
+            showMoreButton.style.display = 'block';
+        } else {
+            showMoreButton.style.display = 'none';
+        }
     }
 }
 
 // Function to show more posts
-function toggleShowMore() {
-    const showMoreButton = document.getElementById('showMore');
-    const storedPosts = JSON.parse(localStorage.getItem('posts')) || [];
-    const selectedCategory = localStorage.getItem('selectedCategory') || 'showall';
-
-    // Filter active posts
-    let activePosts = getActivePosts(storedPosts);
-    if (selectedCategory !== 'showall') {
-        activePosts = activePosts.filter(post => post.categories === selectedCategory);
-    }
-
-    if (showMoreButton.getAttribute('data-showing') === 'false') {
-        limit = activePosts.length; // Show all posts
-        showMoreButton.setAttribute('data-showing', true);
-    } else {
-        limit = 4; // Show only 4 posts
-        showMoreButton.setAttribute('data-showing', false);
-    }
-    displayPosts(limit);
-}
-
-// Function to load more posts
 function loadMorePosts() {
     const currentPostCount = document.getElementById('posts').children.length;
-    displayPosts(currentPostCount + 10); // Load more posts in increments of 10
+    displayPosts(currentPostCount + 4);
 }
 
-// Initialize categories and posts when the page loads
-window.onload = function () {
-    loadCategories(); // Load categories into the dropdown
-    displayPosts(); // Display posts
+// Function to show all posts regardless of category
+function showAllPosts() {
+    const dropdown = document.getElementById('categories');
+    if (dropdown) {
+        dropdown.value = 'showall';
+    }
+    localStorage.setItem('selectedCategory', 'showall');
+    displayPosts();
+}
 
+// Initialize when the page loads
+window.onload = function() {
+    console.log('Page loaded, initializing blog...');
+    loadCategories();
+    displayPosts();
+    
     const showMoreButton = document.getElementById('showMore');
     if (showMoreButton) {
         showMoreButton.addEventListener('click', loadMorePosts);

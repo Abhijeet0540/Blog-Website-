@@ -634,14 +634,17 @@ i.fas.fa-search.top-search-icon {
     top: 15px;
     animation: buttonAnimation 3s ease infinite alternate;
 }
-.blog-search{
+
+.blog-search {
     position: relative;
     left: -43px;
     top: 0px;
 }
-.firstCard{
+
+.firstCard {
     overflow: hidden;
 }
+
 /* card image animation with css  */
 .card-container {
     padding: 20px;
@@ -655,6 +658,68 @@ i.fas.fa-search.top-search-icon {
 .card-container:hover {
     transform: scale(1.02);
     /* Slightly zoom in on hover */
+}
+
+/* Blog post styling */
+#posts {
+    min-height: 200px;
+}
+
+#posts .col-md-3 {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#posts .col-md-3:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.post-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.col-md-3:hover .post-image {
+    transform: scale(1.05);
+}
+
+.category-label {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    z-index: 2;
+}
+
+.post-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.post-date {
+    font-size: 14px;
+    color: #777;
 }
 
 /* Author Info Styling */
@@ -682,11 +747,13 @@ i.fas.fa-search.top-search-icon {
 .card-author-details {
     text-align: left;
 }
+
 .card-author-title {
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 5px;
 }
+
 .card-author-role,
 .card-article-date {
     font-size: 12px;
@@ -699,7 +766,7 @@ i.fas.fa-search.top-search-icon {
     margin-bottom: 20px;
     color: #555;
     line-height: 1.5;
-    
+
 }
 
 /* Tags */
@@ -733,7 +800,7 @@ i.fas.fa-search.top-search-icon {
 } */
 
 .card-image-container {
-    overflow: hidden; 
+    overflow: hidden;
     border-radius: 10px;
     width: 100%;
     height: auto;
@@ -924,6 +991,7 @@ i.fas.fa-search.top-search-icon {
     max-width: 100%;
     height: auto;
 }
+
 .arrow {
     position: relative;
     left: 351px;
@@ -942,7 +1010,7 @@ i.fas.fa-search.top-search-icon {
     z-index:-100;
   } */
 
-  .illustration{
+.illustration {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -953,11 +1021,13 @@ i.fas.fa-search.top-search-icon {
     text-align: center;
 }
 
-.character-left, .character-right {
+.character-left,
+.character-right {
     width: 30%;
 }
 
-.character-left img, .character-right img {
+.character-left img,
+.character-right img {
     width: 100%;
     height: auto;
 }
@@ -994,5 +1064,3 @@ i.fas.fa-search.top-search-icon {
 .cta-button:hover {
     background-color: #4a21b3;
 }
-
-

@@ -169,13 +169,23 @@ form input:focus {
 form a {
     text-decoration: none;
 }
-.link .forgot {
+
+.link .forgot,
+.link .view-blog {
     color: #1877f2;
     font-size: 0.875rem;
+    margin-top: 10px;
+    display: inline-block;
 }
 
-.link .forgot:hover {
+.link .forgot:hover,
+.link .view-blog:hover {
     text-decoration: underline;
+}
+
+.link .view-blog {
+    color: #42b72a;
+    font-weight: 500;
 }
 
 hr {
